@@ -12,6 +12,12 @@ const schema = a.schema({
       content: a.string(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
+    
+  chat: a.conversation({
+    aiModel: a.ai.model('Claude 3.5 Sonnet'),
+    systemPrompt: 'You are a helpful assistant',
+  })
+  .authorization((allow) => allow.owner()),
 });
 
 export type Schema = ClientSchema<typeof schema>;
@@ -26,6 +32,8 @@ export const data = defineData({
     },
   },
 });
+
+
 
 /*== STEP 2 ===============================================================
 Go to your frontend source code. From your client-side code, generate a
