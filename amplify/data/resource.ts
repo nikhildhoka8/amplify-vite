@@ -14,8 +14,10 @@ const schema = a.schema({
     .authorization((allow) => [allow.publicApiKey()]),
     
   chat: a.conversation({
-    aiModel: a.ai.model('Claude 3.5 Sonnet'),
-    systemPrompt: 'You are a helpful assistant',
+    aiModel: {
+      resourcePath: 'us.anthropic.claude-3-haiku-20240307-v1:0'
+    },
+    systemPrompt: 'Your name is Bella that is created by NALO Tech @ Lilly to assist individuals at NALO within Lilly, a helpful assistant',
   })
   .authorization((allow) => allow.owner()),
 });
